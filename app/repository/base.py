@@ -27,3 +27,20 @@ class BaseAbstractRepository(ABC, Generic[ModelType, CreateSchemaType]):
     def create(self, obj_in: CreateSchemaType) -> ModelType:
         raise NotImplementedError
 
+
+class BaseSqlAlchemyRepository(BaseAbstractRepository):
+    def __init__(self, session: Session, model: Type[ModelType]):
+        self.session = session
+        self.model = model
+
+    def get(self, id: int) -> Optional[ModelType]:
+        return (
+            self.session.query(self.model).filter(self.model.id == id).first()
+        )
+
+    def create(self, obj_in: CreateSchemaType) -> ModelType:
+        db_obj = self.model(**obj_in.dict())
+        self.session.add(db_obj)
+        self.session.commit()
+        self.session.refresh(db_obj)
+        return db_obj
