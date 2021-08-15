@@ -39,3 +39,27 @@ redis, файл (json к примеру) либо ваш вариант.
 Результат предоставить в виде репозитория на github,
 добавив инструкцию по запуску приложения в readme.
 
+## How to run
+1. Copy `.env` file from `/examples` folder to `/app` folder:
+    ```
+    cp /examples/.env /app/.env
+    ```
+2. Set following environment variables:
+   - SQLALCHEMY_DATABASE_URI
+3. Go to `/app` folder:
+    ```
+    cd app
+    ```
+4. Append your project’s root directory to `PYTHONPATH`:
+    ```
+    Linux:
+    export PYTHONPATH="${PYTHONPATH}:/path/to/bulletin_board/"
+
+    Windows:
+    set PYTHONPATH=%PYTHONPATH%;C:\path\to\bulletin_board
+    ```
+5. Run server:
+    ```
+    python main.py
+    ```
+
