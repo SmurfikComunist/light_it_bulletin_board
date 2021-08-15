@@ -29,3 +29,26 @@ class PostAbstractRepository(BaseAbstractRepository[Post, PostCreate]):
         raise NotImplementedError
 
 
+class PostSqlAlchemyRepository(
+    BaseSqlAlchemyRepository, PostAbstractRepository
+):
+    def get_posts_order_by_date(self, order: Callable = desc) -> List[Post]:
+        return (
+            self.session.query(self.model)
+            .order_by(order(self.model.created_at))
+            .all()
+        )
+
+    def get_with_comments(self, id: int) -> Post:
+        return (
+            self.session.query(self.model)
+            .options(selectinload(Post.comments))
+            .filter_by(id=id)
+            .one()
+        )
+
+
+def get_post_sqlalchemy_repository(
+    session: Session,
+) -> PostSqlAlchemyRepository:
+    return PostSqlAlchemyRepository(session=session, model=Post)
