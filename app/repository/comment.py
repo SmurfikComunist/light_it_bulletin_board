@@ -16,3 +16,13 @@ class CommentAbstractRepository(
     pass
 
 
+class CommentSqlAlchemyRepository(
+    BaseSqlAlchemyRepository, CommentAbstractRepository
+):
+    pass
+
+
+def get_comment_sqlalchemy_repository(
+    session: Session,
+) -> CommentSqlAlchemyRepository:
+    return CommentSqlAlchemyRepository(session=session, model=Comment)
