@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% for post in posts %}
+<article class="blog-post">
+        <hr align="center" size="5"/>
+        <a href="/{{post.id}}"><h3 class="blog-post-title">{{post.title}}</h3></a>
+
+        <p class="blog-post-meta"><b>Author: {{post.author}}</b></p>
+        {{post.text}}
+        <br></br>
+        <p class="blog-post-meta">{{post.created_at}}</p>
+        <br></br>
+</article>
+{% endfor %}
+
+{% endblock %}

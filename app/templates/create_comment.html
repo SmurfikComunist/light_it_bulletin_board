@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Create new comment</h1>
+<form method="post">
+    <div class="form-group">
+        {% if error %}
+          <p class=error><strong>Error:</strong> {{ error }}
+          <br></br>
+        {% endif %}
+        <input name="author" maxlength="100" type="text" placeholder="Author">
+        <br>
+        <textarea name="text" maxlength="200" placeholder="Text" rows="10"></textarea>
+        <br>
+    </div>
+    <input type="submit" value="Add comment">
+</form>
+{% endblock %}

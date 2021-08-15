@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<article class="blog-post">
+        <h3 class="blog-post-title">{{post.title}}</h3>
+        <p class="blog-post-meta"><b>Author: {{post.author}}</b></p>
+        {{post.text}}
+        <br></br>
+        <p class="blog-post-meta">{{post.created_at}}</p>
+        <br></br>
+        <div><a class="btn btn-primary" href="/{{post.id}}/create_comment">Add Comment</a></div>
+        <hr align="center" size="5"/>
+        {% for comment in post.comments %}
+                <ul>
+                <li>By {{comment.author}}: <p>{{comment.text}}</p></li>
+                </ul>
+        {% endfor %}
+</article>
+
+
+{% endblock %}

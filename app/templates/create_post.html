@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Create new post</h1>
+<form method="post">
+    <div class="form-group">
+        {% if error %}
+          <p class=error><strong>Error:</strong> {{ error }}
+          <br></br>
+        {% endif %}
+        <input name="author" maxlength="100" type="text" placeholder="Author">
+        <br>
+        <input name="title" maxlength="100" type="text" placeholder="Title">
+        <br>
+        <textarea name="text" maxlength="1000" placeholder="Text" rows="10"></textarea>
+        <br>
+    </div>
+    <input type="submit" value="Add post">
+</form>
+{% endblock %}
