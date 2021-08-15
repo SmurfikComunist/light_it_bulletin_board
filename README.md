@@ -63,3 +63,10 @@ redis, файл (json к примеру) либо ваш вариант.
     python main.py
     ```
 
+## Examples of site pages
+
+### Homepage
+![Homepage](./docs/Homepage.JPG)
+
+### Post Detail
+![Post_Detail](./docs/Post_Detail.JPG)
